@@ -1,0 +1,292 @@
+<html>
+    <head>
+        <title>Ajax Request Example</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+
+            body{
+                background-color: azure;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed; /* Use fixed table layout */
+            }
+
+            th, td {
+                border: 1px solid #000;
+                padding: 8px;
+                text-align: center; /* Center align the content within cells */
+            }
+
+            th {
+                background-color: #f2f2f2; /* Set background color for header cells */
+            }
+      
+            input[type="button"] {
+                width: 66%;
+                padding: 18px 35px;
+                background-color: #f5b905;
+                color: black;
+                font-size: 20px;
+                font-weight: bold;
+                border: 1px solid black;
+                border-radius: 5px;
+            }
+      
+            input[type="text"] {
+                padding: 20px 60px;
+                font-size: 50px;
+                font-weight: bold;
+                border: none;
+                border-radius: 8px;
+                border: 3px solid black;
+            }
+
+        </style>
+    </head>
+    <body>
+        <a href="http://localhost/mycalci/logout.html" style="align-items: right;">Logout</a>
+        <h1 style="margin-left:auto; padding-top: 15px; text-align: center;">
+            Welcome!
+        </h1>
+    <table id="calculator">
+        <tr>
+            <td  colspan="5">
+                <input type="text" id="answer">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" 
+                         value="AC" 
+                         onclick="clear_input()" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="()" 
+                         onclick="res('()')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="%" 
+                         onclick="res('%')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="/" 
+                         onclick="res('/')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="sin" 
+                         onclick="res('sin')" 
+                         onkeydown="ans(event)"> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" 
+                         value="7" 
+                         onclick="res('7')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="8" 
+                         onclick="res('8')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="9" 
+                         onclick="res('9')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="*" 
+                         onclick="res('*')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="cos" 
+                         onclick="res('cos')" 
+                         onkeydown="ans(event)"> 
+            </td>
+        </tr>
+  
+        <tr>
+            <td>
+                <input type="button" 
+                         value="4" 
+                         onclick="res('4')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="5" 
+                         onclick="res('5')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="6" 
+                         onclick="res('6')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="-" 
+                         onclick="res('-')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="tan" 
+                         onclick="res('tan')" 
+                         onkeydown="ans(event)"> 
+            </td>
+        </tr>
+        <tr>
+  
+            <td>
+                <input type="button" 
+                         value="1" 
+                         onclick="res('1')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="2" 
+                         onclick="res('2')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="3" 
+                         onclick="res('3')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="+" 
+                         onclick="res('+')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="sqrt" 
+                         onclick="res('sqrt')" 
+                         onkeydown="ans(event)"> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" 
+                         value="0" 
+                         onclick="res('0')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="." 
+                         onclick="res('.')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="clear" 
+                         onclick="clearfield()" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <td>
+                <input type="button" 
+                         value="root" 
+                         onclick="res('**')" 
+                         onkeydown="ans(event)"> 
+            </td>
+            <!-- calculate function call function calculate to evaluate value -->
+            <td>
+                <input type="button" 
+                         value="=" 
+                          onclick="calculate()"> 
+            </td>
+        </tr>
+
+    </table>
+
+    <script>
+       
+        function calculate() {
+            $.ajax({
+                    url: 'http://localhost/mycalci/calculator.php',
+                    type: 'POST',
+                    data: {data : document.getElementById("answer").value},
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data && data.replace == 1){
+                            window.location.replace(" http://localhost/mycalci/welcome.html?cred=1");
+                        }
+                        //$('#response-container').html(data.msg);
+                        $('#answer').val(data)
+                        console.log(data);
+                    },
+                    error: function (xhr, status, error) {
+                        $('#answer').val("")
+                        alert("some error occured");
+                    }
+            });
+        }
+
+        function res(params) {
+            document.getElementById("answer").value += params;
+        }
+        
+        var cal = document.getElementById("calculator");
+        cal.onkeyup = function (event) {
+            if (event.keyCode === 13) {
+                let a = document.getElementById("answer").value
+                console.log(a);//to evaluate
+                calculate();
+            }
+        }
+
+        function clear_input() {
+            document.getElementById("answer").value = ""
+        }
+
+        function clearfield(){
+            document.getElementById("answer").value = ""
+        }
+
+        function islogin(){
+            $.ajax({
+                    url: 'http://localhost/mycalci/calculator.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data && data.replace == 1){
+                            window.location.replace("http://localhost/mycalci/welcome.html?cred=1");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        $('#answer').val("")
+                        alert("some error occured");
+                    }
+            });
+        }
+
+        islogin();
+
+    </script>
+
+
+    </body>
+</html>
